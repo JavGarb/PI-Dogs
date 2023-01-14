@@ -2,10 +2,12 @@ require('dotenv').config();
 const { Sequelize } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
+//Aqui trae todas las constantes con datos sensibles requeridas para la db
 const {
   DB_USER, DB_PASSWORD, DB_HOST,
 } = process.env;
 
+//crea la conexion a la base de datos de postgre
 const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/dogs`, {
   logging: false, // set to console.log to see the raw SQL queries
   native: false, // lets Sequelize know we can use pg-native for ~30% more speed
@@ -30,10 +32,20 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
-const { Dog } = sequelize.models;
-
+const { Dog, User, Temperamento } = sequelize.models;
+console.log(sequelize.models);
 // Aca vendrian las relaciones
-// Product.hasMany(Reviews);
+//Relaciono la tabla user con la tabla dog de muchos a muchos
+//dado que a un usuario le pueden gustar varios perros y los perros
+// pueden tener varios usuarios que los pusieron de favoritos
+Dog.belongsToMany(User, {through: 'userDog'});
+User.belongsToMany(Dog, {through: 'userDog'});
+//Relaciono las tablas Perro con temperamento, de M:N dado que varias razas 
+//tienen varios temperamentos
+Dog.belongsToMany(Temperamento, {through: 'dogTemperamento'});
+Temperamento.belongsToMany(Dog, {through: 'dogTemperamento'});
+
+
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
