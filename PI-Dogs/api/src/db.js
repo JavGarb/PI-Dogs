@@ -33,7 +33,6 @@ sequelize.models = Object.fromEntries(capsEntries);
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
 const { Dog, User, Temperamento } = sequelize.models;
-console.log(sequelize.models);
 // Aca vendrian las relaciones
 //Relaciono la tabla user con la tabla dog de muchos a muchos
 //dado que a un usuario le pueden gustar varios perros y los perros

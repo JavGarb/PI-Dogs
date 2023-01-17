@@ -1,28 +1,54 @@
-const {Router} = require ('express');
+const { Router } = require('express');
+const { getAll, getName, getId, dogCreate } = require('../controlers/dogControlers');
 
 
-const router= Router();
-//--------------------------------------------------------
-router.get('/', (req, res)=>{
+const router = Router();
+//--------------------------------------------------------terminado
+router.get('/', async (req, res) => {
     //ruta que devuelve todos los perros o el que pide el query
     ///dogs?name="...":
     try {
-        const {name}= req.query;
-        if(!name)res.status(200).send('devuelvo todos los perros');
-        else res.status(200).send (`envio el perro ${name}`); 
+        const { name } = req.query;
+        let todos = await getAll(); // tomo todos los perros
+        if (!name) res.status(200).send(todos);// si no hay query envio todos
+        else {//si hay query verifico que tenga al menos 3 letras, si no hay 3 o mas letras enio error
+            if(name.length <=2) throw new Error ('Deben ser al menos 3 letras');
+            //ahora filtro el perro que se busca por query, paso todo a minisculas
+            const uno = getName(todos, name);
+            //si encuentra algun perro que corresponda lo envio
+            if(uno.length)res.status(200).send(uno);
+            //sino mando un error
+            else throw new Error('No existe el perro')
+        }
     } catch (error) {
-        console.log(error.message)//gestionar errores
+        res.status(404).send({ error: error.message });
     }
 });
-//----------------------------------------------------------
-// router.get('/', (req, res)=>{
-//     //ruta que devuelve todos los perros, solo datos requeridos
-//     try {
-//         res.status(200).send('devuelvo todos los perros'); 
-//     } catch (error) {
-//         console.log(error.message)//gestionar errores
-//     }
-// });
+//----------------------------------------------------------terminado
+router.get('/:id',async (req, res) => {
+    //ruta que devuelve los datos del perro requerido
+    const { id } = req.params;
+    const todos = await getAll(); // tomo todos los perros
+    const forId = getId(todos, id)
+    try {
+        if(forId)res.status(200).send(forId);
+        else throw new Error('Ningun perrro con ese id')
+    } catch (error) {
+        res.status(404).send({ error: error.message });
+    }
+});
+
+router.post('/', async (req, res) => {
+    const obj = req.body;
+    const creado= await dogCreate(obj);
+    try {
+        res.status(200).send(creado);
+    } catch (error) {
+        res.status(404).send({ error: error.message });
+    }
+})
+
+
 
 module.exports = router;
 
@@ -40,7 +66,4 @@ Incluir los temperamentos asociados
 [ ] POST /dogs:
 Recibe los datos recolectados desde el formulario controlado de la ruta de creación de raza de perro por body
 Crea una raza de perro en la base de datos relacionada con sus temperamentos
-[ ] GET /temperaments:
-Obtener todos los temperamentos posibles
-En una primera instancia deberán obtenerlos desde la API externa y guardarlos en su propia base de datos y luego ya utilizarlos desde allí
 */
