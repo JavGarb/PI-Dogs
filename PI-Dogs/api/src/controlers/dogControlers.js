@@ -35,9 +35,13 @@ const getDB = async () => {
 //esta funcion ejecuta las funciones que traen los datos de la base de datos y
 // de la api, luego concatena los resultados y los retorna para usarlas en la ruta
 const getAll = async () => {
+try {
     const res = await getApi();
     const dataBase = await getDB();
     return await res.concat(dataBase);
+} catch (error) {
+    console.log(error);
+}
 }
 //La realizamos con metodos then y catch :)
 // const getAll = () => {

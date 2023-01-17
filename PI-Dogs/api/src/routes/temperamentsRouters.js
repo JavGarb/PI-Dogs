@@ -7,7 +7,7 @@ const router= Router();
 
 
 router.get('/', async (req, res)=>{
-    //devuelvo todos los temperamentos
+    //devuelvo todos los temperamentos y gestiono errores
     try {
         res.status(200).send(await getAllTemp());
     } catch (error) {
