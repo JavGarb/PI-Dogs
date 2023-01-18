@@ -12,11 +12,11 @@ module.exports = (sequelize) => {
             allowNull: false,
             primaryKey: true
         },
-        nombre: {
+        first_name: {
             type: DataTypes.STRING,
             allowNull:false
         },
-        apellido:{
+        last_name:{
             type: DataTypes.STRING,
             allowNull: false
         },

@@ -1,30 +1,30 @@
 const axios = require('axios');
-const { Dog, Temperamento } = require('../db.js');
+const { Dog, Temperament } = require('../db.js');
 const { TOKEN_API } = process.env;
 
 
 //traemos los datos de la api
 const getApi = async () => {
     const getApi = await axios.get('https://api.thedogapi.com/v1/breeds?api_key='+TOKEN_API);
-    const respuesta = await getApi.data.map(element => {
+    const response = await getApi.data.map(element => {
         //solo devuelvo lo que voy a usar
         return {
             id: element.id,
             name: element.name,
-            altura: element.height.metric,
-            peso: element.weight.metric,
-            anos_vida: element.life_span,
-            temperamento: element.temperament,
-            imagen: element.image
+            height: element.height.metric,
+            weight: element.weight.metric,
+            year_life: element.life_span,
+            temperament: element.temperament,
+            image: element.image
         }
     });
-    return respuesta;
+    return response;
 }
 //TOMAMOS TODOS LOS DATOS DE LOS PERROS DE LA BASE DE DATOS
 const getDB = async () => {
     return await Dog.findAll({
         include: {
-            model: Temperamento,
+            model: Temperament,
             attributes: ['name'],
             through: {
                 attributes: []
@@ -56,21 +56,21 @@ try {
 //         });
 // };
 
-const getName = (todos, name) => {
-    const res = todos.filter(elemento => elemento.name.toLowerCase().includes(name.toLowerCase()));
+const getName = (alls, name) => {
+    const res = alls.filter(element => element.name.toLowerCase().includes(name.toLowerCase()));
     return res;
 }
-const getId = (todos, id) => {
-    const res = todos.filter(elemento => elemento.id == id);
+const getId = (alls, id) => {
+    const res = alls.filter(element => element.id == id);
     return res;
 }
 
 const dogCreate = async (obj) => {
-    const {name, altura, peso, anos_vida, temperamento} = obj;
-    const creado= await Dog.create({name, altura, peso, anos_vida});
-    const temp = await Temperamento.create({name: temperamento})
-    creado.temperamento= temp.name;
-    return creado;
+    const {name, height, weight, year_life, temperament} = obj;
+    const create= await Dog.create({name, height, weight, year_life});
+    const temp = await Temperament.create({name: temperament})
+    create.temperament= temp.name;
+    return create;
 }
 
 

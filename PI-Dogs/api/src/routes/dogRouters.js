@@ -9,14 +9,14 @@ router.get('/', async (req, res) => {
     ///dogs?name="...":
     try {
         const { name } = req.query;
-        let todos = await getAll(); // tomo todos los perros
-        if (!name) res.status(200).send(todos);// si no hay query envio todos
+        let alls = await getAll(); // tomo todos los perros
+        if (!name) res.status(200).send(alls);// si no hay query envio todos
         else {//si hay query verifico que tenga al menos 3 letras, si no hay 3 o mas letras enio error
             if(name.length <=2) throw new Error ('Deben ser al menos 3 letras');
             //ahora filtro el perro que se busca por query, paso todo a minisculas
-            const uno = getName(todos, name);
+            const one = getName(alls, name);
             //si encuentra algun perro que corresponda lo envio
-            if(uno.length)res.status(200).send(uno);
+            if(one.length)res.status(200).send(one);
             //sino mando un error
             else throw new Error('No existe el perro')
         }
@@ -28,11 +28,11 @@ router.get('/', async (req, res) => {
 router.get('/:id',async (req, res) => {
     //ruta que devuelve los datos del perro requerido
     const { id } = req.params;
-    const todos = await getAll(); // tomo todos los perros
-    const forId = getId(todos, id)
+    const alls = await getAll(); // tomo todos los perros
+    const forId = getId(alls, id)
     try {
         if(forId)res.status(200).send(forId);
-        else throw new Error('Ningun perrro con ese id')
+        else throw new Error('Ningun perro con ese id')
     } catch (error) {
         res.status(404).send({ error: error.message });
     }
@@ -40,9 +40,9 @@ router.get('/:id',async (req, res) => {
 
 router.post('/', async (req, res) => {
     const obj = req.body;
-    const creado= await dogCreate(obj);
+    const created= await dogCreate(obj);
     try {
-        res.status(200).send(creado);
+        res.status(200).send(created);
     } catch (error) {
         res.status(404).send({ error: error.message });
     }
