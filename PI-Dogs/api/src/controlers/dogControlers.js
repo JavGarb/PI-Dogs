@@ -66,11 +66,17 @@ const getId = (alls, id) => {
 }
 
 const dogCreate = async (obj) => {
+try {
     const {name, height, weight, year_life, temperament} = obj;
-    const create= await Dog.create({name, height, weight, year_life});
+    const nameTemp = name.trim().toLowerCase();
+    const [dogCreate,create]= await Dog.findOrCreate({where:{name:nameTemp},defaults:{height, weight, year_life}});
     const temp = await Temperament.create({name: temperament})
     create.temperament= temp.name;
-    return create;
+    if(create)return dogCreate;
+    else throw new Error('No se pudo crear el perro, intentelo mas tarde')
+} catch (error) {
+    return error.message;
+}
 }
 
 

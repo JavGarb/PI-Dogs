@@ -8,25 +8,27 @@ module.exports = (sequelize) => {
     */
     sequelize.define('User', {
         id: {//clave primaria de usuario
-            type: DataTypes.INTEGER,
+            type: DataTypes.UUID,
+            defaultValue: DataTypes.UUIDV4,
             allowNull: false,
-            primaryKey: true
+            primaryKey: true,
         },
         first_name: {
             type: DataTypes.STRING,
-            allowNull:false
+            allowNull: false
         },
-        last_name:{
+        last_name: {
             type: DataTypes.STRING,
             allowNull: false
         },
-        mail:{
+        mail: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            unique: true
+        },
+        password: {
             type: DataTypes.STRING,
             allowNull: false
-        },
-        password:{
-            type: DataTypes.STRING,
-            allowNull:false
         }
 
     });

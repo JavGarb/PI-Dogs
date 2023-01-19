@@ -1,24 +1,22 @@
-const {getAll} = require('./dogControlers');
 
-async function paginated(arr,pageNum, order, param){
-    
-    if(ascent && param){
-        if(order === 'D'){
-
+function arrayPaginated(arr, page) {
+    let begin = 0;
+    let end = 7;
+    let temp = [];
+    let result = [];
+    while (begin < arr.length) {
+        for (let i = begin; i <= end; i++) {
+            if (arr[i]) temp.push(arr[i])
         }
+        result.push(temp)
+        console.log(temp, 'cantidad ', temp.length)
+        temp = [];
+        begin = end + 1;
+        end = end + 8;
     }
-    else {
-
-    }
-
-
+    console.log(result.length)
+    if(result.length >= page)return result[page - 1];
+    else throw new Error('no existe esa pagina')
 }
 
-
-function orderAscend(arr, param){
-    return arr.sort((a,b)=>a[param] - b[params]);
-}
-
-function orderDescend(arr, param){
-
-}
+module.exports = {arrayPaginated}
