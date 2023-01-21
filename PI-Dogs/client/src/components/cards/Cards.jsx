@@ -20,8 +20,8 @@ const distpatch= useDispatch();
         id={index}
         image={dog.image.url}
         name={dog.name}
-        temperament={dog.temperament.trim()}
-        weight={dog.weight}
+        temperament={dog.temperament?dog.temperament.trim():'sin datos'}
+        weight={dog.weight?dog.weight:'sin dato'}
         />
       })}
       

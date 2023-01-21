@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectPosicion } from '../../controladores/controlPaginado.js'
 import { getPage, setPage } from '../../redux/actions.js'
+import styles from './Paginated.Module.css';
 
 export const Paginated = (props) => {
   let actual = useSelector(state => state.actualPage);
@@ -35,15 +36,17 @@ export const Paginated = (props) => {
           actual=1;
           break;
       }
-      dispatch(getPage(actual));
-      dispatch(setPage(actual));
+      if(actual >0 && actual < max){
+        dispatch(getPage(actual));
+        dispatch(setPage(actual));
+      }
     }
 
   };
 
   console.log(position);
   return (
-    <div>
+    <div className={styles.container}>
       <button onClick={onClickHandler}> {'<<'}</button>
       <button onClick={onClickHandler}> {'<'} </button>
       {

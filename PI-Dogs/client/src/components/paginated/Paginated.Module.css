@@ -1,0 +1,7 @@
+.container{
+    background-color: antiquewhite;
+    width: 100%;
+    align-items: center;
+    text-align: center;
+    border: 4px dotted grey;
+}

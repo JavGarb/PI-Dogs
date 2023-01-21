@@ -1,0 +1,20 @@
+.container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    overflow: hidden;
+    
+}
+
+h1{
+    flex-shrink: 0;
+    margin: auto;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-shadow: 0px 0px 10px yellow;
+    animation: pass 10s linear infinite;
+}
+
+@keyframes pass{
+    0%{transform: translateX(+100%)}
+    100%{transform: translateX(-100%)}
+}
