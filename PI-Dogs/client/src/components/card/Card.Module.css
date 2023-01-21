@@ -1,0 +1,39 @@
+
+
+.container{
+    border: 3px solid black;
+    border-radius: 10%;
+    background-color: bisque;
+    align-items: center;
+    text-align: center;
+    width: 320px;
+    height: 350px;
+    padding: 3%;
+    margin:10px auto;
+}
+
+.image{
+    width: 90%;
+    height: 60%;
+    border: 3px groove white;
+    border-radius: 20%;
+    padding: 2px;
+    margin:auto;
+}
+
+.container:hover{
+    box-shadow: 7px 7px 7px gray;
+    transform: scale(105%);
+    transition-duration: 0.2s;
+    transform: rotateX('50deg');
+}
+
+h1{
+    margin: 2px;
+    width: max-content;
+    margin-bottom: 1px;
+}
+h6{
+    margin: 1%;
+
+}

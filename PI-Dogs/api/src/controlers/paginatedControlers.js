@@ -9,12 +9,10 @@ function arrayPaginated(arr, page) {
             if (arr[i]) temp.push(arr[i])
         }
         result.push(temp)
-        console.log(temp, 'cantidad ', temp.length)
         temp = [];
         begin = end + 1;
         end = end + 8;
     }
-    console.log(result.length)
     if(result.length >= page)return result[page - 1];
     else throw new Error('no existe esa pagina')
 }

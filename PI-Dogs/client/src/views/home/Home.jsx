@@ -1,0 +1,32 @@
+import React from 'react';
+import { connect } from 'react-redux';
+import {Cards} from '../../components/cards/Cards';
+import {NavBar} from '../../components/navBar/NavBar';
+import {Footer} from '../../components/footer/Footer';
+import {Title} from '../../components/title/Title';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { getPage, setPage } from '../../redux/actions';
+import styles  from './Home.Module.css';
+import { Paginated } from '../../components/paginated/Paginated';
+
+export const Home = (props) => {
+  
+  const dispatch = useDispatch();
+  
+  useEffect(()=>{
+    dispatch(getPage(1));
+    dispatch(setPage(1));
+  },[]);
+
+  return (
+    <div className={styles.container}>
+      <NavBar />
+      <Title />
+      <Cards />
+      <Paginated />
+      <Footer />
+    </div>
+  )
+}
+

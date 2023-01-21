@@ -9,11 +9,11 @@ router.get('/', async (req, res) => {
     //ruta que devuelve todos los perros o el que pide el query
     ///dogs?name="...":
     try {
-        const { name, pages } = req.query;
+        const { name, page } = req.query;
         let alls = await getAll(); // tomo todos los perros
         const count = Math.ceil(alls.length/8); 
-        if (!name && !pages) res.status(200).send(alls);// si no hay query envio todos
-        else if(!name && pages)res.status(200).send({paginado:arrayPaginated(alls, pages), count});//si hay page envio la pagina que pide y la cantidad de paginas que hay
+        if (!name && !page) res.status(200).send(alls);// si no hay query envio todos
+        else if(!name && page)res.status(200).send({paginated:arrayPaginated(alls, page), count});//si hay page envio la pagina que pide y la cantidad de paginas que hay
         else {//si hay query verifico que tenga al menos 3 letras, si no hay 3 o mas letras enio error
             if(name.length <=2) throw new Error ('Deben ser al menos 3 letras');
             //ahora filtro el perro que se busca por query, paso todo a minisculas

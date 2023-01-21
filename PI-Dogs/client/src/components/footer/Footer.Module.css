@@ -1,0 +1,19 @@
+.container{
+    text-align: center;
+    line-height: 0%;
+    padding: 1%;
+    width: 100%;
+}
+
+h4{
+    color: gray;
+    margin-top: 2px;
+    padding: 0%;
+}
+
+p{
+    color: gray;
+    margin-top: 1px;
+    margin-bottom: 3px;
+
+}
