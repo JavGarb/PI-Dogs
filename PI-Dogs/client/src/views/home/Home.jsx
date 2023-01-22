@@ -9,6 +9,7 @@ import { useDispatch } from 'react-redux';
 import { getPage, setPage } from '../../redux/actions';
 import styles  from './Home.Module.css';
 import { Paginated } from '../../components/paginated/Paginated';
+import { SearchBar } from '../../components/searchBar/SearchBar';
 
 export const Home = (props) => {
   
@@ -23,6 +24,7 @@ export const Home = (props) => {
     <div className={styles.container}>
       <NavBar />
       <Title />
+      <SearchBar />
       <Cards />
       <Paginated />
       <Footer />

@@ -3,7 +3,7 @@
     align-items: center;
     width: 100%;
     overflow: hidden;
-    
+    margin: auto;    
 }
 
 h1{
@@ -11,10 +11,10 @@ h1{
     margin: auto;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     text-shadow: 0px 0px 10px yellow;
-    animation: pass 10s linear infinite;
+    animation: pass 15s linear infinite;
 }
 
 @keyframes pass{
-    0%{transform: translateX(+100%)}
-    100%{transform: translateX(-100%)}
+    0%{transform: translateX(+150%)}
+    100%{transform: translateX(-150%)}
 }

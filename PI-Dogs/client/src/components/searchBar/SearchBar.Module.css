@@ -1,0 +1,11 @@
+.container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    line-height: 40%;
+    border: 3px solid grey;
+    border-radius: 20px;
+    padding: 1% 2%;
+
+}
