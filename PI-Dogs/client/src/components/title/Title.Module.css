@@ -6,7 +6,7 @@
     margin: auto;    
 }
 
-h1{
+.title{
     flex-shrink: 0;
     margin: auto;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;

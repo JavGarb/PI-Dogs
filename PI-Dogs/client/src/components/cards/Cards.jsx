@@ -13,6 +13,7 @@ const {paginated, count}= useSelector(state=> state.page);
 const distpatch= useDispatch();
 
 
+
   return (
     <div className={styles.container}>
       {paginated?.map((dog,index)=>{

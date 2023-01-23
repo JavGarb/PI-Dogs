@@ -1,15 +1,14 @@
 import React from 'react'
-import {getDogs} from '../../redux/actions.js'
+import styles from './Landing.Module.css'
+const rutaImagen = 'https://i.gifer.com/origin/8a/8ae7d9dcf1faad6107c974edff70a23e_w200.gif';
+
 
 export function Landing() {
 
-    const presion= ()=>{
-        console.log('presione entrar');
-    }
     return (
-        <div>
-            <h1>Landing</h1>
-            <p><a href="/home" onClick = {presion}>Ingresar</a></p>
+        <div className={styles.landing}>
+                <h1 className={styles.titleIngreso}>Proyecto Individual del Bootcamp Soy Henry</h1>
+                <a href="/home" className={styles.btnIngreso}>Entrar</a>
         </div>
     )
 }
