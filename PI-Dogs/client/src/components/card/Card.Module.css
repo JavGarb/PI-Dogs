@@ -1,6 +1,6 @@
 
 
-.container{
+.containerCard{
     border: 3px solid black;
     border-radius: 10%;
     background-color: bisque;
@@ -21,7 +21,7 @@
     margin:auto;
 }
 
-.container:hover{
+.containerCard:hover{
     box-shadow: 7px 7px 7px gray;
     transform: scale(105%);
     transition-duration: 0.2s;
@@ -36,4 +36,8 @@ h1{
 h6{
     margin: 1%;
 
+}
+.title{
+    color: black;
+    width: 90%;
 }

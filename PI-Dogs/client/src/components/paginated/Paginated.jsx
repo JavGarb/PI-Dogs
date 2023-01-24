@@ -44,9 +44,8 @@ export const Paginated = (props) => {
 
   };
 
-  console.log(position);
   return (
-    <div className={styles.container}>
+    <div className={styles.containerPag}>
       <button onClick={onClickHandler}> {'<<'}</button>
       <button onClick={onClickHandler}> {'<'} </button>
       {

@@ -1,4 +1,4 @@
-.container{
+.containerNav{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -7,9 +7,10 @@
     width: 100%;
     margin-top: 0px;
     margin-bottom: 2%;
+    padding-top: 5%;
     padding-left: 20%;
 }
-a{
+.btn{
     padding: 10px;
     margin:10px 30px;
     text-decoration: none;
@@ -20,7 +21,7 @@ a{
     color: antiquewhite;
 }
 
-button{
+.buttonNav{
     margin: 10px;
 }
 
@@ -31,9 +32,33 @@ p{
 
 
 @media(max-width:550px) {
-    .container{
-        padding-left: 6%;
+    .containerNav{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        width: 83vw;
+        margin-top: 2px;
+        margin-bottom: 1%;
+        padding-left: 1%;
     }
+    .btn{
+        padding: 2px;
+        text-decoration: none;
+        background-color: blueviolet;
+        width: 60vw;
+        text-align: center;
+        border-radius: 10%;
+        color: antiquewhite;
+    }
+    
+    .buttonNav{
+        margin: 10px;
+    }
+    /* .containerNav{
+        padding-left: 5%;
+    } */
 
     a{
         margin: 1px;

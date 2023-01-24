@@ -61,7 +61,7 @@ const getName = (alls, name) => {
     return res;
 }
 const getId = (alls, id) => {
-    const res = alls.filter(element => element.id == id);
+    const [res] = alls.filter(element => element.id == id);
     return res;
 }
 

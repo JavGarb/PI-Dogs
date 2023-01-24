@@ -1,12 +1,18 @@
 import React from 'react';
 import styles from './SearchBar.Module.css';
+import {useSelector} from 'react-redux';
 
 
 export const SearchBar = (props) => {
+  const temperaments= useSelector(state=> state.temperaments)
+  function handleClick(){
+    //Solicitar al back por nombre
+    
+  }
   return (
-    <div className={styles.container}>
+    <form className={styles.containerFrm}>
       <div className={styles.order}>
-        <h3>Ordenar perros:</h3>
+      <h3>Ordenar perros:</h3>
         <h6>Orden Descendente<input type="radio" name="orden" id="2" checked="true" /></h6>
         <h6>Orden Ascendente<input type="radio" name="orden" id="1" /></h6>
       </div>
@@ -16,17 +22,19 @@ export const SearchBar = (props) => {
         <h6>Peso:<input type="radio" name="por" id="2" /></h6>
       </div>
       <div className={styles.find}>
-        <h4>Busqueda</h4>
+        <h3>Busqueda</h3>
         <label htmlFor="find">Ingrese Nombre de la raza</label>
         <input type="text" name='find' className={styles.txt} />
-        <button>Buscar</button>
+        <button onClick={handleClick}>Buscar</button>
       </div>
       <div className={styles.filter}>
-        <h4>Filtrar</h4>
+        <h4>Filtrar por Temperamento</h4>
         <label htmlFor="filter">Filtro</label>
-        
+        <select name="temperamentos" id="temps">
+          {temperaments?.map(element=> <option value={element}>{element}</option>)}
+        </select>
       </div>
-    </div>
+    </form>
   )
 }
 

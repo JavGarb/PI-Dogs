@@ -1,9 +1,23 @@
-.container{
+.containerCards{
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
     height: 90%;
-    margin-left: 15%;
-    margin-right: 15%;
+    margin-left: calc(100vw /8);
+    margin-right:calc(100vw /8);
+    max-width: 1024px;
+}
 
+@media(max-width:1024){
+    .containerCards{
+        margin-left: 30%;
+        margin-right: 30%;
+    }
+}
+
+@media(max-width:400){
+    .containerCards{
+        margin-left: 0%;
+        margin-right: 30%;
+    }
 }

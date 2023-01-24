@@ -18,3 +18,14 @@
     0%{transform: translateX(+150%)}
     100%{transform: translateX(-150%)}
 }
+
+@media (max-width: 600px){
+    .title{
+        flex-shrink: 0;
+        margin: auto;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        text-shadow: 0px 0px 10px yellow;
+        font-size: smaller;
+        animation: pass 15s linear infinite;
+    }
+}

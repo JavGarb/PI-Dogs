@@ -17,3 +17,17 @@ p{
     margin-bottom: 3px;
 
 }
+
+@media (max-width:600px){
+    h4{
+        color: gray;
+        padding: 0%;
+        font-size: 8px;
+    }
+    p{
+        color: gray;
+        margin-top: 1px;
+        margin-bottom: 3px;
+        font-size: 8px;
+    }
+}

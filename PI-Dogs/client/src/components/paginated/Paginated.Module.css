@@ -1,7 +1,21 @@
-.container{
+.containerPag{
     background-color: antiquewhite;
-    width: 100%;
+    width: 80%;
     align-items: center;
     text-align: center;
     border: 4px dotted grey;
+    margin-left: 8%;
+    margin-right: 3%;
+}
+
+@media(max-width:550){
+    .containerPag{
+        background-color: antiquewhite;
+        width: 70%;
+        align-items: center;
+        text-align: center;
+        border: 4px dotted grey;
+        margin-left: 0%;
+        margin-right: 5%;
+    }
 }

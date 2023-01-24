@@ -1,9 +1,9 @@
-.container{
+.containerFrm{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: space-around;
     align-items: center;
-    line-height: 40%;
     border: 3px solid grey;
     border-radius: 20px;
     padding: 1% 2%;
@@ -11,21 +11,42 @@
     background-color: beige;
     text-align: center;
 }
+.order .value .find{
+    margin: 1%;
+    font-size: large;
+    padding-top: 3%;
+    border-right: 1px solid black;
+}
 
-.container{
-    margin: 1%;
-}
-.value{
-    margin: 1%;
-}
 
 .find {
-    margin: 1%;
-    padding-top: 3%;
-}
+    flex-direction: column;
+} 
 
 .txt{
     margin-top: 2%;
     background-color: black;
     color: azure;
+}
+
+.filter{
+    text-align: center;
+    align-items: center;
+}
+
+@media(max-width:500px){
+    .containerFrm{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        align-items: center;
+        border: 3px solid grey;
+        border-radius: 20px;
+        max-width: 70vw;
+        padding: 1%;
+        background-color: beige;
+        text-align: center;
+        font-size: small;
+    }
 }
