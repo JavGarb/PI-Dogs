@@ -1,0 +1,52 @@
+
+.frmDog{
+    display: flex;
+    flex-direction: column;
+    flex-wrap:wrap ;
+    justify-content: right;
+    text-align: right;
+    width: 40%;
+    margin: 3%;
+    margin-left: 20%;
+    padding: 10%;
+    align-items: center;
+    background-color: aqua;
+    font-size: x-large;
+}
+
+.inpRaza{
+    width: 82%;
+}
+input{
+    font-size: x-large;
+    margin-top: 5%;
+}
+.btnCrear{
+    justify-content: center;
+    margin-top: 1%;
+    margin-left: 5px;
+    height: 25px;
+}
+
+.cmbBox{
+    margin-top: 25px;
+    font-size: x-large;
+    justify-items: center;
+}
+
+
+@media(max-width:550px){
+    .frmDog{
+        font-size: small;
+    }
+    input{
+        font-size: small;
+        margin-top: 5%;
+    }
+    .frmDog{
+        margin: 5vw;
+        padding: 3px;
+        width: 90%;
+    }
+}
+

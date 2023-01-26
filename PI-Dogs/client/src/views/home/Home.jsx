@@ -4,7 +4,7 @@ import {NavBar} from '../../components/navBar/NavBar';
 import {Footer} from '../../components/footer/Footer';
 import {Title} from '../../components/title/Title';
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getPage, setPage, getAll, getTemperaments } from '../../redux/actions';
 import styles  from './Home.Module.css';
 import { Paginated } from '../../components/paginated/Paginated';
@@ -14,18 +14,19 @@ export const Home = (props) => {
   
   const dispatch = useDispatch();
   
-  useEffect(()=>{
+  //useEffect(()=>{
     dispatch(getPage(1));
-    dispatch(setPage(1));
     dispatch(getAll());
+    dispatch(setPage(1));
     dispatch(getTemperaments());
-  },[dispatch]);
+  //},[dispatch]);
 
   return (
     <div className={styles.containerHome}>
       <NavBar />
       <Title />
       <SearchBar />
+      <Paginated />
       <Cards />
       <Paginated />
       <Footer />

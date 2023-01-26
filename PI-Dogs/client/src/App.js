@@ -5,6 +5,7 @@ import {Details} from './views/details/Details';
 import {Favorites} from './views/favorites/Favorites'
 import{NewUser} from './views/newUser/NewUser'
 import {Route, Switch} from 'react-router-dom';
+import{ NewDog} from './views/NewDog/NewDog';
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
       <Route path="/details/:id"><Details /></Route>
       <Route path="/favorites"><Favorites /></Route>
       <Route path="/newuser"><NewUser /></Route>
+      <Route path="/newdog"><NewDog /></Route>
       </Switch>
     </div>
   );

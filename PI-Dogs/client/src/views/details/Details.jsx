@@ -1,13 +1,17 @@
 import React from 'react'
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+
 
 export const Details = (props) => {
   let { id } = useParams();
   const [ficha, setFicha] = useState({});
-
+///Hay que arreglar lo del paginado, ya que trae el perro
+//del id 1 al 8 solamente
 
   useEffect(() => {
+    console.log('trae este perro', id);
     fetch(`http://localhost:3001/dogs/${id}`)
     .then((response) => response.json())
     .then((dog) => {
@@ -27,6 +31,7 @@ export const Details = (props) => {
 
   return (
     <div>
+      <Link to= '/home'>Regresar</Link>
       <div>
           <h3>Raza: {ficha.name}</h3>
           <h5>Temperamentos: {ficha.temperament}</h5>

@@ -1,8 +1,11 @@
 import React from 'react'
 import styles from './Landing.Module.css'
+import { useDispatch } from 'react-redux';
+
 
 
 export function Landing() {
+ 
 
     return (
         <div className={styles.landing}>

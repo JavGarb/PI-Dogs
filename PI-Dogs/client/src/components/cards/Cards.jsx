@@ -16,7 +16,7 @@ const {paginated}= useSelector(state=> state.page);
     <div className={styles.containerCards}>
       {paginated?.map((dog,index)=>{
         return <Card 
-        id={index}
+        id={dog.id}
         image={dog.image.url}
         name={dog.name}
         temperament={dog.temperament?dog.temperament.trim():'sin datos'}

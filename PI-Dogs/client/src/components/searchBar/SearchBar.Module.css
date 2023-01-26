@@ -7,7 +7,7 @@
     border: 3px solid grey;
     border-radius: 20px;
     padding: 1% 2%;
-    margin: 8%;
+    margin: 1% 8%;
     background-color: beige;
     text-align: center;
 }
@@ -20,7 +20,11 @@
 
 
 .find {
-    flex-direction: column;
+    background-color: burlywood;
+    margin-left: calc((100vw/2)-300px);
+    width: max-content;
+    justify-content: center;
+    align-items: center;
 } 
 
 .txt{

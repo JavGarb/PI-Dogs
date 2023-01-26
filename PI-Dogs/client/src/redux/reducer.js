@@ -8,10 +8,10 @@ const initialState= {
     login:false,//guardo si hay usuario logueado
     actualPage:0,//pagina actual
     temperaments:[],
-    filter:'none',//guarda si se aplica o no filter, esto decide si trabaja con paginado en BEnd o en FEnd
+    filter:false,//guarda si se aplica o no filter, esto decide si trabaja con paginado en BEnd o en FEnd
 }
 
-const reducer=(state= initialState , action)=>{
+const reducer = ( state = initialState , action)=>{
     
     switch(action.type){
         case GET_TEMP:

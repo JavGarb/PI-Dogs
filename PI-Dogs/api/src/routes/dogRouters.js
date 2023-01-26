@@ -14,9 +14,9 @@ router.get('/', async (req, res) => {
         const count = Math.ceil(alls.length/8); 
         if (!name && !page) res.status(200).send(alls);// si no hay query envio todos
         else if(!name && page)res.status(200).send({paginated:arrayPaginated(alls, page), count});//si hay page envio la pagina que pide y la cantidad de paginas que hay
-        else {//si hay query verifico que tenga al menos 3 letras, si no hay 3 o mas letras enio error
+        else {//si hay query verifico que tenga al menos 3 letras, si no hay 3 o mas letras envio error
             if(name.length <=2) throw new Error ('Deben ser al menos 3 letras');
-            //ahora filtro el perro que se busca por query, paso todo a minisculas
+            //ahora filtro el perro que se busca por query, paso todo a minusculas
             const one = getName(alls, name);
             //si encuentra algun perro que corresponda lo envio
             if(one.length)res.status(200).send(one);
