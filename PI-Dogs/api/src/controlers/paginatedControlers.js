@@ -13,6 +13,7 @@ function arrayPaginated(arr, page, order, value) {
         begin = end + 1;
         end = end + 8;
     }
+
     if(result.length >= page)return result[page - 1];
     else throw new Error('no existe esa pagina')
 }

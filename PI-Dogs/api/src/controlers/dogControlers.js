@@ -5,7 +5,7 @@ const { TOKEN_API } = process.env;
 
 //traemos los datos de la api
 const getApi = async () => {
-    const getApi = await axios.get('https://api.thedogapi.com/v1/breeds?api_key='+TOKEN_API);
+    const getApi = await axios.get('https://api.thedogapi.com/v1/breeds?api_key=' + TOKEN_API);
     const response = await getApi.data.map(element => {
         //solo devuelvo lo que voy a usar
         return {
@@ -34,14 +34,28 @@ const getDB = async () => {
 }
 //esta funcion ejecuta las funciones que traen los datos de la base de datos y
 // de la api, luego concatena los resultados y los retorna para usarlas en la ruta
-const getAll = async () => {
-try {
-    const res = await getApi();
-    const dataBase = await getDB();
-    return await res.concat(dataBase);
-} catch (error) {
-    console.log(error);
-}
+const getAll = async (order, value) => {
+    try {
+        const res = await getApi();
+        const dataBase = await getDB();
+        let arr = await res.concat(dataBase);//return await res.concat(dataBase);*esta linea comente para agregar orden
+
+        //lineas agregadas para hacer los ordenamientos por raza o peso************************************************
+        if (order === 'Descendente' && value === 'Raza') arr = arr.sort((a, b) => b.name.localeCompare(a.name));
+        if (order === 'Ascendente' && value === 'Raza') arr = arr.sort((a, b) => a.name.localeCompare(b.name));
+        if (order === 'Ascendente' && value === 'Peso') {
+            arr = arr.sort((a, b) => parseInt(a.weight.substr(0, 2) - parseInt(b.weight.substr(0, 2))))
+        }
+        if (order === 'Descendente' && value === 'Peso') {
+            arr = arr.sort((a, b) => parseInt(a.weight.substr(0, 2) + parseInt(b.weight.substr(0, 2))))
+        }
+
+        return arr;
+    }
+    //******************************************************************************************************** */
+    catch (error) {
+        console.log(error);
+    }
 }
 //La realizamos con metodos then y catch :)
 // const getAll = () => {
@@ -66,17 +80,17 @@ const getId = (alls, id) => {
 }
 
 const dogCreate = async (obj) => {
-try {
-    const {name, height, weight, year_life, temperament} = obj;
-    const nameTemp = name.trim().toLowerCase();
-    const [dogCreate,create]= await Dog.findOrCreate({where:{name:nameTemp},defaults:{height, weight, year_life}});
-    const temp = await Temperament.create({name: temperament})
-    create.temperament= temp.name;
-    if(create)return dogCreate;
-    else throw new Error('No se pudo crear el perro, intentelo mas tarde')
-} catch (error) {
-    return error.message;
-}
+    try {
+        const { name, height, weight, year_life, temperament } = obj;
+        const nameTemp = name.trim().toLowerCase();
+        const [dogCreate, create] = await Dog.findOrCreate({ where: { name: nameTemp }, defaults: { height, weight, year_life, temperament } });
+        const temp = await Temperament.create({ name: temperament })
+        create.temperament = temp.name;
+        if (create) return dogCreate;
+        else throw new Error('No se pudo crear el perro, intentelo mas tarde')
+    } catch (error) {
+        return error.message;
+    }
 }
 
 

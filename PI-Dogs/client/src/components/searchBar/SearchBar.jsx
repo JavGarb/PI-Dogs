@@ -1,14 +1,34 @@
 import React from 'react';
 import styles from './SearchBar.Module.css';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { useState } from 'react';
+import { useEffect } from 'react';
+import { getPage } from '../../redux/actions';
 
 
 export const SearchBar = (props) => {
-  const temperaments = useSelector(state => state.temperaments)
-  function handleClick() {
+  const temperaments = useSelector(state => state.temperaments);
+  const page= useSelector(state=>state.actualPage);
+  const dispatch= useDispatch();
+  const [radioBtn, setRadioBtn]= useState({order:'Ascendente', value: 'Raza'})
+  function handleClick(event) {
     //Solicitar al back por nombre
 
   }
+  function handleInput(event){
+    if(event.target.name==='orden'){
+      console.log(event.target.value)
+      setRadioBtn({...radioBtn, order:event.target.value});
+    }
+    if(event.target.name==='value'){
+      console.log(event.target.value)
+      setRadioBtn({...radioBtn, value:event.target.value});
+    }
+  }
+
+  useEffect(()=>{
+    dispatch(getPage(page, radioBtn.order, radioBtn.value))
+  },[radioBtn]);
   return (
     <>
         <div className={styles.find}>
@@ -20,13 +40,13 @@ export const SearchBar = (props) => {
     <form className={styles.containerFrm}>
       <div className={styles.order}>
         <h3>Ordenar perros:</h3>
-        <h6>Descendente<input type="radio" name="orden" id="2" checked="true" /></h6>
-        <h6>Ascendente<input type="radio" name="orden" id="1" /></h6>
+        <h6>Ascendente<input type="radio" name="orden" id="1" value='Ascendente'  onInput={handleInput}  /></h6>
+        <h6>Descendente<input type="radio" name="orden" id="2" value='Descendente'  onInput={handleInput} /></h6>
       </div>
       <div className={styles.value}>
         <h3>Por Raza o por Peso:</h3>
-        <h6>Raza:<input type="radio" name="por" id="1" checked='true' /></h6>
-        <h6>Peso:<input type="radio" name="por" id="2" /></h6>
+        <h6>Raza:<input type="radio" name="value" value='Raza' id="3" onInput={handleInput} /></h6>
+        <h6>Peso:<input type="radio" name="value" value='Peso' id="4" onInput={handleInput} /></h6>
       </div>
         <div className={styles.filter}>
           <h4>Filtrar por Temperamento</h4>

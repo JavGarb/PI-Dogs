@@ -9,10 +9,10 @@ const URL_TEMPERAMENTS="http://localhost:3001/temperaments"
 
 
 
-export function getPage(page){
+export function getPage(page, order, value){
     if(page < 1)return;
     return (dispatch)=>{
-        fetch(URL_DOGS + `?page=${page}`)
+        fetch(URL_DOGS + `?page=${page}&order=${order}&value=${value}`)
         .then(res=>res.json())
         .then(data=> dispatch({type:GET_PAGE, payload:data}))
         .catch((error)=> console.error(error));

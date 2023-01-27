@@ -15,7 +15,7 @@ export const Home = (props) => {
   const dispatch = useDispatch();
   
   //useEffect(()=>{
-    dispatch(getPage(1));
+    dispatch(getPage(1,"Ascendente", "Raza"));
     dispatch(getAll());
     dispatch(setPage(1));
     dispatch(getTemperaments());

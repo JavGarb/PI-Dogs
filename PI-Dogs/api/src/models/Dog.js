@@ -23,7 +23,10 @@ module.exports = (sequelize) => {
       allowNull: false
     },
     year_life: {
-      type: DataTypes.INTEGER
+      type: DataTypes.STRING
+    },
+    temperament:{
+      type: DataTypes.STRING
     }
   });
 };
