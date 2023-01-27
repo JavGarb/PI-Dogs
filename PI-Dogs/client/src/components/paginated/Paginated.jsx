@@ -2,11 +2,12 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectPosicion } from '../../controladores/controlPaginado.js'
-import { getPage, setPage } from '../../redux/actions.js'
+import { getPage, setPage, setArgs } from '../../redux/actions.js'
 import styles from './Paginated.Module.css';
 
 export const Paginated = (props) => {
   let actual = useSelector(state => state.actualPage);
+  let args = useSelector(state => state.actualArgs);
   const max = useSelector(state => state.page.count);
   let position = selectPosicion(max, actual);
   const dispatch = useDispatch();
@@ -18,8 +19,8 @@ export const Paginated = (props) => {
   const onClickHandler = (e) => {
     const value = e.target.innerText;
     if (!isNaN(value)) {
-      dispatch(getPage(value));
-      dispatch(setPage(value));
+      dispatch(getPage(value,args.order, args.value));//solicito la pagina con los argumentos necesarios
+      dispatch(setPage(value));//seteo la pagina actual 
     }
     else {
       switch (value) {

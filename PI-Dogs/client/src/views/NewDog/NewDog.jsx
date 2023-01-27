@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import { NavBar } from "../../components/navBar/NavBar";
 import { getTemperaments } from "../../redux/actions";
 import styles from "./NewDog.Module.css";
+import axios from 'axios';
+const ROUTE_DOG_POST="http://localhost:3001/dogs"
 
 export function NewDog(props) {
   const temps = useSelector((state) => state.temperaments);
@@ -52,7 +54,32 @@ export function NewDog(props) {
     }
     
   }
-
+//********************************************************************************** */
+  function HandleSubmit(event) {
+    event.preventDefault();
+    const dog={
+      name: input.name,
+      height: input.heightMin + "-" + input.heightMax,
+      weight: input.weightMin + "-" + input.weightMax,
+      year_life: input.year_lifeMin + "-" + input.year_lifeMax,
+      temperament: input.temperament.toString(),
+      image:'https://media.istockphoto.com/id/1392182937/vector/no-image-available-photo-coming-soon.jpg?s=170667a&w=0&k=20&c=HOCGNLwt3LkB92ZlyHAupxbwHY5X2143KDlbA-978dE='
+    }
+    axios.post(ROUTE_DOG_POST, dog)
+    .then(data=> alert(data))
+    .catch(error=> console.log(error));
+    setInput({
+      name: "",
+      heightMin: "0.1",
+      heightMax: "0.2",
+      weightMin: "1",
+      weightMax: "2",
+      year_lifeMin: "1",
+      year_lifeMax: "2",
+      temperament: [],
+    });
+  }
+//*************************************************************************************** */
   const handleClick = (event) => {
     event.preventDefault();
     if (event.target.name === "addTemp" && boxValue !== "") {
@@ -63,7 +90,7 @@ export function NewDog(props) {
     }
     setInput({ ...input, temperament: [...input.temperament, ...arr] });
   };
-
+//*************************************************************************************** */
   function validate(dogState) {
     const errors = {};
     if (!/.[A-Za-z]{5,24}$/.test(dogState.name))
@@ -208,6 +235,7 @@ export function NewDog(props) {
             <p>{element}</p>
           ))}
           <br />
+          <button onClick={HandleSubmit}>Crear Perro</button>
         </form>
       </div>
     </div>

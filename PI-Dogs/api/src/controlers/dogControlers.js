@@ -38,11 +38,10 @@ const getAll = async (order, value) => {
     try {
         const res = await getApi();
         const dataBase = await getDB();
-        let arr = await res.concat(dataBase);//return await res.concat(dataBase);*esta linea comente para agregar orden
-
+        let arr = [...dataBase, ...res];//await res.concat(dataBase);//return await res.concat(dataBase);*esta linea comente para agregar orden
         //lineas agregadas para hacer los ordenamientos por raza o peso************************************************
-        if (order === 'Descendente' && value === 'Raza') arr = arr.sort((a, b) => b.name.localeCompare(a.name));
-        if (order === 'Ascendente' && value === 'Raza') arr = arr.sort((a, b) => a.name.localeCompare(b.name));
+        if (order === 'Descendente' && value === 'Raza') arr = arr.sort((a, b) => b.name.localeCompare(a.name, 'en',{ sensitivity: 'base' }));
+        if (order === 'Ascendente' && value === 'Raza') arr = arr.sort((a, b) => a.name.localeCompare(b.name, 'en', { sensitivity: 'base' }));
         if (order === 'Ascendente' && value === 'Peso') {
             arr = arr.sort((a, b) => parseInt(a.weight.substr(0, 2) - parseInt(b.weight.substr(0, 2))))
         }
@@ -81,9 +80,9 @@ const getId = (alls, id) => {
 
 const dogCreate = async (obj) => {
     try {
-        const { name, height, weight, year_life, temperament } = obj;
-        const nameTemp = name.trim().toLowerCase();
-        const [dogCreate, create] = await Dog.findOrCreate({ where: { name: nameTemp }, defaults: { height, weight, year_life, temperament } });
+        const { name, height, weight, year_life, temperament, image } = obj;
+        let nameTemp = name.trim()//.toLowerCase();
+        const [dogCreate, create] = await Dog.findOrCreate({ where: { name: nameTemp }, defaults: { height, weight, year_life, temperament, image } });
         const temp = await Temperament.create({ name: temperament })
         create.temperament = temp.name;
         if (create) return dogCreate;

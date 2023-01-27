@@ -3,10 +3,17 @@ export const GET_PAGE="GET_PAGE";
 export const SET_PAGE="SET_PAGE";
 export const GET_ALL="GET_ALL";
 export const GET_TEMP="GET_TEMP";
+export const SET_ARGS="GET_ARGS";
 
 const URL_DOGS="http://localhost:3001/dogs"
 const URL_TEMPERAMENTS="http://localhost:3001/temperaments"
 
+
+export function setArgs(args){//args es un objeto con dos propiedades value y order
+    return (dispatch)=>{
+        dispatch({type:SET_ARGS, payload:args})
+    }
+}
 
 
 export function getPage(page, order, value){

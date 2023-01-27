@@ -1,4 +1,4 @@
-import {GET_PAGE, SET_PAGE, GET_ALL, GET_TEMP} from '../redux/actions'
+import {GET_PAGE, SET_PAGE, GET_ALL, GET_TEMP, SET_ARGS} from '../redux/actions'
 
 const initialState= {
     user:{},//guardo el usuario
@@ -8,12 +8,14 @@ const initialState= {
     login:false,//guardo si hay usuario logueado
     actualPage:0,//pagina actual
     temperaments:[],
-    filter:false,//guarda si se aplica o no filter, esto decide si trabaja con paginado en BEnd o en FEnd
+    actualArgs:{value:'', order:''},//guarda los argumentos de getDogs
 }
 
 const reducer = ( state = initialState , action)=>{
     
     switch(action.type){
+        case SET_ARGS:
+            return {...state, actualArgs:action.payload}
         case GET_TEMP:
             return {...state, temperaments:action.payload}
         case GET_PAGE:

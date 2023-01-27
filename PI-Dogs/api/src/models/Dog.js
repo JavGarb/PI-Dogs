@@ -27,6 +27,9 @@ module.exports = (sequelize) => {
     },
     temperament:{
       type: DataTypes.STRING
+    },
+    image:{
+      type:DataTypes.STRING
     }
   });
 };
