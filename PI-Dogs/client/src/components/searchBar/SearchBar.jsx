@@ -3,10 +3,14 @@ import styles from "./SearchBar.Module.css";
 import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
 import { useEffect } from "react";
-import { getPage, setArgs } from "../../redux/actions";
+import { getPage, setArgs, getForName } from "../../redux/actions";
+
 
 
 export const SearchBar = (props) => {
+  //********************************************************************************* */
+  //                         Declaraciones
+  //********************************************************************************* */
   const temperaments = useSelector((state) => state.temperaments);
   const page = useSelector((state) => state.actualPage);
   const dispatch = useDispatch();
@@ -14,13 +18,20 @@ export const SearchBar = (props) => {
     order: "Ascendente",
     value: "Raza",
   });
+  const [inputTxt, setInputTxt] = useState({value:''});
+  //********************************************************************************* */
+  //Funcion que maneja el boton de traer perro por nombre
   //********************************************************************************* */
   function handleClick(event) {
     //Solicitar al back por nombre
+    if(event.target.name==='findName'){
+      dispatch(getForName(inputTxt.value));
+      
+    }
   }
   //************************************************************************************ */
- 
-  //********************************************************************************* */
+  // Maneja los ordenamientos por medio de los radioButton
+  //************************************************************************************ */
   function handleInput(event) {
     if (event.target.name === "orden") {
       console.log(event.target.value);
@@ -35,19 +46,29 @@ export const SearchBar = (props) => {
   }
 
   //************************************************************************************* */
+  //Maneja el estado del textbox para la busqueda
+  //************************************************************************************** */
+  function handleChange(event){
+    if(event.target.name==='findName'){
+      const txt = event.target.value;
+      setInputTxt({...inputTxt, value: txt});
+    }
+  }
+
+  //************************************************************************************* */
 
   useEffect(() => {
     dispatch(getPage(page, radioBtn.order, radioBtn.value));
   }, [radioBtn]);
 
-  //********************************************************************* */
+  //************************************************************************************* */
   return (
     <>
       <div className={styles.find}>
         <h3>Busqueda</h3>
-        <label htmlFor="name">Raza</label>
-        <input type="text" name="name" className={styles.txt} />
-        <button onClick={handleClick}>Buscar</button>
+        <label htmlFor="findName">Raza</label>
+        <input type="text" name="findName" onChange={handleChange} value={inputTxt.value} className={styles.txt} />
+        <button name="findName" onClick={handleClick}>Buscar</button>
       </div>
       <form className={styles.containerFrm}>
         <div className={styles.order}>
