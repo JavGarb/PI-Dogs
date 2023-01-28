@@ -25,9 +25,6 @@ module.exports = (sequelize) => {
     year_life: {
       type: DataTypes.STRING
     },
-    temperament:{
-      type: DataTypes.STRING
-    },
     image:{
       type:DataTypes.STRING
     }

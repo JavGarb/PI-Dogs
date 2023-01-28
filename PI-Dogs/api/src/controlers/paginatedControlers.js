@@ -1,5 +1,5 @@
 
-function arrayPaginated(arr, page, order, value) {
+function arrayPaginated(arr, page) {
     let begin = 0;
     let end = 7;
     let temp = [];

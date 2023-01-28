@@ -46,9 +46,9 @@ const getAllTemp = async () => {
   //ejecuto la funcion que mete todos los temperamentos en la base de datos
   await temperamentsADB();
   //luego traigo de la DB postgres todos los temperamentos 
-  const results= await Temperament.findAll({attributes:['name']});
+  const results= await Temperament.findAll({attributes:['name', 'id']});
   //limpio el resultado y lo mando a la ruta para responder
-  return (results.map(e=> e.dataValues.name));
+  return (results.map(e=> e.dataValues));
 }
 
 

@@ -9,7 +9,11 @@ router.get('/', async (req, res) => {
     //ruta que devuelve todos los perros o el que pide el query
     ///dogs?name="...":
     try {
-        const { name, page, order, value } = req.query;
+        let { name, page, order, value } = req.query;
+        if(!order && !value){
+            order='Ascendente';
+            value='Raza';
+        }
         let alls = await getAll(order, value); // tomo todos los perros
         const count = Math.ceil(alls.length/8); 
         if (!name && !page) res.status(200).send(alls);// si no hay query envio todos
@@ -45,7 +49,7 @@ router.post('/', async (req, res) => {
     const obj = req.body;
     const dogCreated= await dogCreate(obj);
     try {
-        res.status(200).send('Dog created');
+        res.status(200).send('perro creado');
     } catch (error) {
         res.status(404).send({ error: error.message });
     }

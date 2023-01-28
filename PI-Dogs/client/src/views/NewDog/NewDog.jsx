@@ -11,7 +11,7 @@ const ROUTE_DOG_POST="http://localhost:3001/dogs"
 export function NewDog(props) {
   const temps = useSelector((state) => state.temperaments);
   const dispatch = useDispatch();
-  let boxValue = "";
+  let boxValue = {name:'', id:0};
   let arr = [];
 
   const [input, setInput] = useState({
@@ -28,30 +28,35 @@ export function NewDog(props) {
 
   const handleChange = (event) => {
     if (event.target.name === "temperament") {
-      boxValue = event.target.value;
+      boxValue.name = event.target.value;
+      const oneTemp= temps.find(element=> element.name === boxValue.name);
+      boxValue.id=oneTemp.id
+      console.log(boxValue);
     } else {
       const value = event.target.value;
+      const id= event.target.id;
       const name = event.target.name;
-      setInput({ ...input, [name]: value });
+      console.log(id);
+      setInput({ ...input, [name]: value,[id]:id });
       setError(validate({ ...input, [name]: value }));
     }
   };
 
   const handleEliminar=(event)=>{
-    event.preventDefault();
-    let temporal=[]
-    const {temperament} = input;
-    if (boxValue==""){
-      for(let i=0; i<temperament.length -1; i++){
-        temporal.push(temperament[i])
-      }
-      setInput({ ...input, temperament: temporal });
-    }
-    else{
-      temporal= temperament.filter(element=> element != boxValue);
-      console.log(temporal);
-      setInput({ ...input, temperament: temporal });
-    }
+    // event.preventDefault();
+    // let temporal=[]
+    // const {temperament} = input;
+    // if (!boxValue.id){
+    //   for(let i=0; i<temperament.length -1; i++){
+    //     temporal.push(temperament[i])
+    //   }
+    //   setInput({ ...input, temperament: temporal });
+    // }
+    // else{
+    //   temporal= temperament.filter(element=> element != boxValue.value);
+    //   console.log(temporal);
+    //   setInput({ ...input, temperament: temporal });
+    // }
     
   }
 //********************************************************************************** */
@@ -62,11 +67,11 @@ export function NewDog(props) {
       height: input.heightMin + "-" + input.heightMax,
       weight: input.weightMin + "-" + input.weightMax,
       year_life: input.year_lifeMin + "-" + input.year_lifeMax,
-      temperament: input.temperament.toString(),
+      temperament: input.temperament.map(e=> e.id),
       image:'https://media.istockphoto.com/id/1392182937/vector/no-image-available-photo-coming-soon.jpg?s=170667a&w=0&k=20&c=HOCGNLwt3LkB92ZlyHAupxbwHY5X2143KDlbA-978dE='
     }
     axios.post(ROUTE_DOG_POST, dog)
-    .then(data=> alert(data))
+    .then(data=> alert(data.data))
     .catch(error=> console.log(error));
     setInput({
       name: "",
@@ -82,9 +87,9 @@ export function NewDog(props) {
 //*************************************************************************************** */
   const handleClick = (event) => {
     event.preventDefault();
-    if (event.target.name === "addTemp" && boxValue !== "") {
+    if (event.target.name === "addTemp" && boxValue.name !== "") {
       if (boxValue === "None") return alert("debe ingresar un valor valido");
-      if (input.temperament.includes(boxValue))
+      if (input.temperament.includes(boxValue.id))
         return alert("No se deben repetir los valores");
       arr.push(boxValue);
     }
@@ -214,8 +219,8 @@ export function NewDog(props) {
             </option>
             {temps?.map((element) => {
               return (
-                <option value={element} readOnly>
-                  {element}{" "}
+                <option id={element.id} value={element.name} readOnly>
+                  {element.name}{" "}
                 </option>
               );
             })}
@@ -232,7 +237,7 @@ export function NewDog(props) {
           onClick={handleEliminar}
           >Eliminar temperamento</button>
           {input.temperament?.map((element) => (
-            <p>{element}</p>
+             <p>{element.name}</p>
           ))}
           <br />
           <button onClick={HandleSubmit}>Crear Perro</button>

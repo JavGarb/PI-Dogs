@@ -123,7 +123,7 @@ export const SearchBar = (props) => {
           <select name="temperamentos" id="temps">
             <option value="none">none</option>
             {temperaments?.map((element) => (
-              <option value={element}>{element}</option>
+              <option value={element.id}>{element.name}</option>
             ))}
           </select>
         </div>

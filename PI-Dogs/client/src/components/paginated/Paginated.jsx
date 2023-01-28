@@ -42,6 +42,7 @@ export const Paginated = (props) => {
         dispatch(setPage(actual));
       }
     }
+    console.log(value);
 
   };
 

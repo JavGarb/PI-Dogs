@@ -25,7 +25,7 @@ const getDB = async () => {
     return await Dog.findAll({
         include: {
             model: Temperament,
-            attributes: ['name'],
+            attributes: ["name"],
             through: {
                 attributes: []
             }
@@ -40,7 +40,7 @@ const getAll = async (order, value) => {
         const dataBase = await getDB();
         let arr = [...dataBase, ...res];//await res.concat(dataBase);//return await res.concat(dataBase);*esta linea comente para agregar orden
         //lineas agregadas para hacer los ordenamientos por raza o peso************************************************
-        if (order === 'Descendente' && value === 'Raza') arr = arr.sort((a, b) => b.name.localeCompare(a.name, 'en',{ sensitivity: 'base' }));
+        if (order === 'Descendente' && value === 'Raza') arr = arr.sort((a, b) => b.name.localeCompare(a.name, 'en', { sensitivity: 'base' }));
         if (order === 'Ascendente' && value === 'Raza') arr = arr.sort((a, b) => a.name.localeCompare(b.name, 'en', { sensitivity: 'base' }));
         if (order === 'Ascendente' && value === 'Peso') {
             arr = arr.sort((a, b) => parseInt(a.weight.substr(0, 2) - parseInt(b.weight.substr(0, 2))))
@@ -81,12 +81,20 @@ const getId = (alls, id) => {
 const dogCreate = async (obj) => {
     try {
         const { name, height, weight, year_life, temperament, image } = obj;
-        let nameTemp = name.trim()//.toLowerCase();
-        const [dogCreate, create] = await Dog.findOrCreate({ where: { name: nameTemp }, defaults: { height, weight, year_life, temperament, image } });
-        const temp = await Temperament.create({ name: temperament })
-        create.temperament = temp.name;
-        if (create) return dogCreate;
-        else throw new Error('No se pudo crear el perro, intentelo mas tarde')
+        const dogCreated = await Dog.create({
+            name: name,
+            height: height,
+            weight: weight,
+            year_life: year_life,
+            image: image,
+        });
+        await dogCreated.addTemperament(temperament)
+        // let nameTemp = name.trim()//.toLowerCase();
+        // const [dogCreate, create] = await Dog.findOrCreate({ where: { name: nameTemp }, defaults: { height, weight, year_life, temperament, image } });
+        // const temp = await Temperament.create({ name: temperament })
+        // create.temperament = temp.name;
+        // if (create) return dogCreate;
+        // else throw new Error('No se pudo crear el perro, intentelo mas tarde')
     } catch (error) {
         return error.message;
     }

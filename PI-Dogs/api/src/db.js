@@ -34,17 +34,17 @@ sequelize.models = Object.fromEntries(capsEntries);
 // Para relacionarlos hacemos un destructuring
 const { Dog, User, Temperament } = sequelize.models;
 // Aca vendrian las relaciones
+
+//Relaciono las tablas Perro con temperamento, de M:N dado que varias razas 
+//tienen varios temperamentos
+Dog.belongsToMany(Temperament, {through: 'dogsTemperaments'});
+Temperament.belongsToMany(Dog, {through:'dogsTemperaments'})
+
 //Relaciono la tabla user con la tabla dog de muchos a muchos
 //dado que a un usuario le pueden gustar varios perros y los perros
 // pueden tener varios usuarios que los pusieron de favoritos
 Dog.belongsToMany(User, {through: 'userDog'});
 User.belongsToMany(Dog, {through: 'userDog'});
-//Relaciono las tablas Perro con temperamento, de M:N dado que varias razas 
-//tienen varios temperamentos
-Dog.belongsToMany(Temperament, {through: 'dogsTemperaments'});
-Temperament.belongsToMany(Dog, {through:'dogsTemperaments'})
-//Dog.belongsToMany(Temperament, {through: 'dogTemperament'});
-//Temperament.belongsToMany(Dog, {through: 'dogTemperament'});
 
 
 
