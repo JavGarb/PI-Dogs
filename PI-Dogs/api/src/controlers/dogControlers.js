@@ -14,7 +14,7 @@ const getApi = async () => {
             height: element.height.metric,
             weight: element.weight.metric,
             year_life: element.life_span,
-            temperament: element.temperament,
+            Temperaments: element.temperament,
             image: element.image
         }
     });
@@ -32,12 +32,24 @@ const getDB = async () => {
         }
     })
 }
+
+const dbToStr=(dataB)=>{
+    let str='';
+    dataB.forEach(element => {
+        console.log(element.dataValues)
+        for(i=0; i<element.dataValues.Temperaments.length;i++){
+            str? str= str + ', '  + element.dataValues.Temperaments[i].name:str=element.dataValues.Temperaments[i].name ;
+        }
+        element.dataValues.Temperaments=str; 
+    });
+}
 //esta funcion ejecuta las funciones que traen los datos de la base de datos y
 // de la api, luego concatena los resultados y los retorna para usarlas en la ruta
 const getAll = async (order, value) => {
     try {
         const res = await getApi();
-        const dataBase = await getDB();
+        let dataBase = await getDB();
+        dbToStr(dataBase);//el array de objetos que viene de la base de datos la retorno como un string
         let arr = [...dataBase, ...res];//await res.concat(dataBase);//return await res.concat(dataBase);*esta linea comente para agregar orden
         //lineas agregadas para hacer los ordenamientos por raza o peso************************************************
         if (order === 'Descendente' && value === 'Raza') arr = arr.sort((a, b) => b.name.localeCompare(a.name, 'en', { sensitivity: 'base' }));
@@ -48,7 +60,8 @@ const getAll = async (order, value) => {
         if (order === 'Descendente' && value === 'Peso') {
             arr = arr.sort((a, b) => parseInt(a.weight.substr(0, 2) + parseInt(b.weight.substr(0, 2))))
         }
-
+        
+        //console.log(arr[9])
         return arr;
     }
     //******************************************************************************************************** */

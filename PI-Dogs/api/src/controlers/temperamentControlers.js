@@ -5,15 +5,16 @@ const { getAll } = require('../controlers/dogControlers');
 //funcion para tomar todos los 
 function allTemperaments(arr) {
   let temporary = [];
+  console.log(arr)
   let results=[];// la usare para entregar los resultados
   //recorro todo el array para sacar los temperamentos
   arr.forEach((element) =>{
-    let{temperament}= element;//desestructuro el temperamento
+    let{Temperaments}= element;//desestructuro el temperamento
     //tengo que verificar que el temperamento contenga algo
-    if(temperament){
+    if(Temperaments){
       //temperamento es un string separado por comas, por tanto
       //hago un split que me devuelve un array con las palabras
-      temporary= temperament.split(',');
+      temporary= Temperaments.split(',');
       //recorro el array y vou pusheando al resultado
       temporary.map(elem=>{
         results.push(elem.trim())
