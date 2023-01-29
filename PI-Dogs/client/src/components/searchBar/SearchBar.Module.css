@@ -20,11 +20,28 @@
 
 
 .find {
-    margin-left: calc((100vw/2)-300px);
+    display: flex;
+    flex-direction: column;
+    margin-left: 40%;
     width: max-content;
     justify-content: center;
     align-items: center;
+    margin-bottom: 5px;
 } 
+.find input {
+    background-color: aliceblue;
+    border: 2px solid silver;
+    color: silver;
+}
+
+.find button {
+    width:50%;
+    height: 40px;
+    background-color: goldenrod;
+    margin-top: 4px;
+    border-radius: 5px 5px 5px;
+    font-size: x-large;
+}
 
 .txt{
     margin-top: 2%;
@@ -52,4 +69,13 @@
         text-align: center;
         font-size: small;
     }
+    .find {
+        display: flex;
+        flex-direction: column;
+        margin-left: 25%;
+        width: max-content;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 5px;
+    } 
 }

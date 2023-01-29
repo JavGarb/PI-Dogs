@@ -5,13 +5,14 @@ import { Link } from "react-router-dom";
 import { NavBar } from "../../components/navBar/NavBar";
 import { getTemperaments } from "../../redux/actions";
 import styles from "./NewDog.Module.css";
+import imgBtn from '../../images/btnVolver.gif'
 import axios from 'axios';
-const ROUTE_DOG_POST="http://localhost:3001/dogs"
+const ROUTE_DOG_POST = "http://localhost:3001/dogs"
 
 export function NewDog(props) {
   const temps = useSelector((state) => state.temperaments);
   const dispatch = useDispatch();
-  let boxValue = {name:'', id:0};
+  let boxValue = { name: '', id: 0 };
   let arr = [];
 
   const [input, setInput] = useState({
@@ -29,50 +30,50 @@ export function NewDog(props) {
   const handleChange = (event) => {
     if (event.target.name === "temperament") {
       boxValue.name = event.target.value;
-      const oneTemp= temps.find(element=> element.name === boxValue.name);
-      boxValue.id=oneTemp.id
+      const oneTemp = temps.find(element => element.name === boxValue.name);
+      boxValue.id = oneTemp.id
       console.log(boxValue);
     } else {
       const value = event.target.value;
-      const id= event.target.id;
+      const id = event.target.id;
       const name = event.target.name;
       console.log(id);
-      setInput({ ...input, [name]: value,[id]:id });
+      setInput({ ...input, [name]: value, [id]: id });
       setError(validate({ ...input, [name]: value }));
     }
   };
 
-  const handleEliminar=(event)=>{
+  const handleEliminar = (event) => {
     event.preventDefault();
-    let temporal=[]
-    const {temperament} = input;
-    if (!boxValue.id){
-      for(let i=0; i<temperament.length -1; i++){
+    let temporal = []
+    const { temperament } = input;
+    if (!boxValue.id) {
+      for (let i = 0; i < temperament.length - 1; i++) {
         temporal.push(temperament[i])
       }
       setInput({ ...input, temperament: temporal });
     }
-    else{
-      temporal= temperament.filter(element=> element != boxValue.value);
+    else {
+      temporal = temperament.filter(element => element != boxValue.value);
       console.log(temporal);
       setInput({ ...input, temperament: temporal });
     }
-    
+
   }
-//********************************************************************************** */
+  //********************************************************************************** */
   function HandleSubmit(event) {
     event.preventDefault();
-    const dog={
+    const dog = {
       name: input.name,
       height: input.heightMin + "-" + input.heightMax,
       weight: input.weightMin + "-" + input.weightMax,
       year_life: input.year_lifeMin + "-" + input.year_lifeMax,
-      temperament: input.temperament.map(e=> e.id),
-      image:'https://media.istockphoto.com/id/1392182937/vector/no-image-available-photo-coming-soon.jpg?s=170667a&w=0&k=20&c=HOCGNLwt3LkB92ZlyHAupxbwHY5X2143KDlbA-978dE='
+      temperament: input.temperament.map(e => e.id),
+      image: 'https://media.istockphoto.com/id/1392182937/vector/no-image-available-photo-coming-soon.jpg?s=170667a&w=0&k=20&c=HOCGNLwt3LkB92ZlyHAupxbwHY5X2143KDlbA-978dE='
     }
     axios.post(ROUTE_DOG_POST, dog)
-    .then(data=> alert(data.data))
-    .catch(error=> console.log(error));
+      .then(data => alert(data.data))
+      .catch(error => console.log(error));
     setInput({
       name: "",
       heightMin: "0.1",
@@ -84,7 +85,7 @@ export function NewDog(props) {
       temperament: [],
     });
   }
-//*************************************************************************************** */
+  //*************************************************************************************** */
   const handleClick = (event) => {
     event.preventDefault();
     if (event.target.name === "addTemp" && boxValue.name !== "") {
@@ -95,7 +96,7 @@ export function NewDog(props) {
     }
     setInput({ ...input, temperament: [...input.temperament, ...arr] });
   };
-//*************************************************************************************** */
+  //*************************************************************************************** */
   function validate(dogState) {
     const errors = {};
     if (!/.[A-Za-z]{5,24}$/.test(dogState.name))
@@ -116,8 +117,14 @@ export function NewDog(props) {
   return (
     <div>
       <NavBar />
+      <div className={styles.cabecera}>
       <h3>Creacion de nuevo Dog</h3>
-      <Link to="/home">Regresar</Link>
+      <div className={styles.btnBack}>
+      <Link to="/home">
+        <img src={imgBtn} alt="" />
+      </Link>
+      </div>
+      </div>
       <div className={styles.frmDog}>
         <form>
           <label>
@@ -232,12 +239,12 @@ export function NewDog(props) {
           >
             Agregar Temperamento
           </button>
-          <button 
-          className={styles.btnCrear}
-          onClick={handleEliminar}
+          <button
+            className={styles.btnCrear}
+            onClick={handleEliminar}
           >Eliminar temperamento</button>
           {input.temperament?.map((element) => (
-             <p>{element.name}</p>
+            <p>{element.name}</p>
           ))}
           <br />
           <button onClick={HandleSubmit}>Crear Perro</button>

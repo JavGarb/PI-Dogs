@@ -10,8 +10,14 @@
     margin-left: 20%;
     padding: 10%;
     align-items: center;
-    background-color: aqua;
+    background-color: lightblue;
     font-size: x-large;
+}
+
+.cabecera{
+    width: 100%;
+    justify-content: center;
+    text-align: center;
 }
 
 .inpRaza{
@@ -32,6 +38,24 @@ input{
     margin-top: 25px;
     font-size: x-large;
     justify-items: center;
+}
+
+.btnBack img{
+    width: 200px;
+    height: 80px;
+}
+.btnBack{
+
+    width: fit-content;
+    height: fit-content;
+    border: 2px solid goldenrod;
+    box-shadow: 0px 0px 10px goldenrod;
+    border-radius: 100% 50%;
+    margin: 5% 45%;
+}
+
+.btnBack:hover{
+    box-shadow: 0px 0px 30px olivedrab;
 }
 
 
