@@ -13,7 +13,6 @@ export const NavBar = (props) => {
       <a className={styles.btn} href="/newDog">New Dog</a>
       {/* {login && <a className={styles.btn} href="/userFavorites">Favorites</a>} */}
       {/* {!login?<a className={styles.btn} href="/Login">Login</a>:<a href="/landing">Logout</a>} */}
-      <p>Usuario Anonimo</p>
     </div>
   )
 }

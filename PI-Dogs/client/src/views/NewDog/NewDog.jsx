@@ -115,15 +115,11 @@ export function NewDog(props) {
   }, [dispatch]);
 
   return (
-    <div>
+    <div className={styles.containerNewDog}>
       <NavBar />
       <div className={styles.cabecera}>
       <h3>Creacion de nuevo Dog</h3>
-      <div className={styles.btnBack}>
-      <Link to="/home">
-        <img src={imgBtn} alt="" />
-      </Link>
-      </div>
+      
       </div>
       <div className={styles.frmDog}>
         <form>
@@ -249,6 +245,11 @@ export function NewDog(props) {
           <br />
           <button onClick={HandleSubmit}>Crear Perro</button>
         </form>
+      </div>
+      <div className={styles.btnBack}>
+      <Link to="/home">
+        <img src={imgBtn} alt="" />
+      </Link>
       </div>
     </div>
   );

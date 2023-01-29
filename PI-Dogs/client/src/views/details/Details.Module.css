@@ -60,5 +60,53 @@
 }
 
 @media (max-width:600px){
+    .containerDetails{
+
+        width: 80%;
+        height: 90vh;
+        margin: 15% 5%;
+    
+    }
+    .containerFoto{
+        background-image: url('../../images/porta-retrato.jpg');
+        background-repeat: no-repeat;
+        background-size:100% 100%;
+        width: 90vw;
+        height: 25vh;
+        border: solid 2px black;
+    }
+    .foto{
+        width: 31.5vw;
+        height: 20vh;
+        margin-left: 37%;
+        margin-top: 4%;
+        
+    }
+    .text h1{
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        font-size: 25px;
+        text-shadow: 7px 7px 7px gray;
+        -webkit-text-stroke: 1px black;
+        color:transparent;
+        width: 100%;
+    }
+    .text{
+        width: 100%;
+        justify-items: center;
+        justify-content: center;
+        text-align: center;
+        font-size: small;
+        margin: auto;
+        padding: 3% 6%;
+    }   
+    .btn{
+
+        width: fit-content;
+        height: fit-content;
+        border: 2px solid goldenrod;
+        box-shadow: 0px 0px 10px goldenrod;
+        border-radius: 100% 50%;
+        margin: 5% 25%;
+    }
 
 }

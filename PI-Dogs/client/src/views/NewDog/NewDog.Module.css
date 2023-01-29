@@ -1,8 +1,15 @@
+body {
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+}
 
-.frmDog{
+
+.frmDog {
     display: flex;
     flex-direction: column;
-    flex-wrap:wrap ;
+    flex-wrap: wrap;
     justify-content: right;
     text-align: right;
     width: 40%;
@@ -10,41 +17,50 @@
     margin-left: 20%;
     padding: 10%;
     align-items: center;
-    background-color: lightblue;
     font-size: x-large;
 }
 
-.cabecera{
+.containerNewDog {
+    width: 100%vw;
+    height: 100vh;
+    background-image: url('../../images/shih-tzu-perro-sentado-suelo_8595-11230.jpg');
+    background-size: cover;
+}
+
+.cabecera {
     width: 100%;
     justify-content: center;
     text-align: center;
 }
 
-.inpRaza{
+.inpRaza {
     width: 82%;
 }
-input{
+
+input {
     font-size: x-large;
     margin-top: 5%;
 }
-.btnCrear{
+
+.btnCrear {
     justify-content: center;
     margin-top: 1%;
     margin-left: 5px;
     height: 25px;
 }
 
-.cmbBox{
+.cmbBox {
     margin-top: 25px;
     font-size: x-large;
     justify-items: center;
 }
 
-.btnBack img{
+.btnBack img {
     width: 200px;
     height: 80px;
 }
-.btnBack{
+
+.btnBack {
 
     width: fit-content;
     height: fit-content;
@@ -54,23 +70,45 @@ input{
     margin: 5% 45%;
 }
 
-.btnBack:hover{
-    box-shadow: 0px 0px 30px olivedrab;
+.btnBack:hover {
+    box-shadow: 0px 0px 30px white;
 }
 
 
-@media(max-width:550px){
-    .frmDog{
+@media(max-width:550px) {
+    .containerNewDog {
+        width: 100%vw;
+        height: 100vh;
+        background-image: url('../../images/shih-tzu-perro-sentado-suelo_8595-11230.jpg');
+        background-size: cover;
+    }
+    .frmDog {
         font-size: small;
     }
-    input{
+
+    input {
         font-size: small;
         margin-top: 5%;
     }
-    .frmDog{
-        margin: 5vw;
-        padding: 3px;
-        width: 90%;
+
+    .frmDog {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: right;
+        text-align: right;
+        width: 50%;
+        padding: 1%;
+        align-items: center;
+        font-size: x-small;
+    }
+    .btnBack {
+
+        width: fit-content;
+        height: fit-content;
+        border: 2px solid goldenrod;
+        box-shadow: 0px 0px 10px goldenrod;
+        border-radius: 100% 50%;
+        margin: 1% 25%;
     }
 }
-
