@@ -37,6 +37,12 @@ export function getPage(page, order, value) {
     }
 }
 
+export function setPageFiltered(obj){
+    return (dispatch)=>{
+        dispatch({ type: GET_PAGE, payload: obj });
+    }
+}
+
 export function getTemperaments() {
     return (dispatch) => {
         fetch(URL_TEMPERAMENTS)

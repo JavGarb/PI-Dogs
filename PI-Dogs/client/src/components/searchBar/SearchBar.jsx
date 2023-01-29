@@ -3,7 +3,8 @@ import styles from "./SearchBar.Module.css";
 import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
 import { useEffect } from "react";
-import { getPage, setArgs, getForName } from "../../redux/actions";
+import { getPage, setArgs, getForName, setPageFiltered } from "../../redux/actions";
+import temperamentFilter from '../../controladores/temperamentFilter'
 
 
 
@@ -13,21 +14,24 @@ export const SearchBar = (props) => {
   //********************************************************************************* */
   const temperaments = useSelector((state) => state.temperaments);
   const page = useSelector((state) => state.actualPage);
+  const allDogs = useSelector(state => state.allDogs)
   const dispatch = useDispatch();
   const [radioBtn, setRadioBtn] = useState({
     order: "Ascendente",
     value: "Raza",
   });
-  const [inputTxt, setInputTxt] = useState({value:''});
+  const [selection, setSelection] = useState('')
+  const [inputTxt, setInputTxt] = useState({ value: '' });
   //********************************************************************************* */
   //Funcion que maneja el boton de traer perro por nombre
   //********************************************************************************* */
   function handleClick(event) {
     //Solicitar al back por nombre
-    if(event.target.name==='findName'){
+    if (event.target.name === 'findName') {
       dispatch(getForName(inputTxt.value));
-      
+
     }
+
   }
   //************************************************************************************ */
   // Maneja los ordenamientos por medio de los radioButton
@@ -36,22 +40,32 @@ export const SearchBar = (props) => {
     if (event.target.name === "orden") {
       console.log(event.target.value);
       setRadioBtn({ ...radioBtn, order: event.target.value });
-      dispatch(setArgs({order:event.target.value, value:radioBtn.value}));
+      dispatch(setArgs({ order: event.target.value, value: radioBtn.value }));
     }
     if (event.target.name === "value") {
       console.log(event.target.value);
       setRadioBtn({ ...radioBtn, value: event.target.value });
-      dispatch(setArgs({order:radioBtn.order, value: event.target.value}));
+      dispatch(setArgs({ order: radioBtn.order, value: event.target.value }));
     }
+
   }
 
   //************************************************************************************* */
   //Maneja el estado del textbox para la busqueda
   //************************************************************************************** */
-  function handleChange(event){
-    if(event.target.name==='findName'){
+  function handleChange(event) {
+    if (event.target.name === 'findName') {
       const txt = event.target.value;
-      setInputTxt({...inputTxt, value: txt});
+      setInputTxt({ ...inputTxt, value: txt });
+    }
+    if (event.target.name === 'temperamentos') {
+      //hacer dispatch con {paginated:arraydeDogs, count: cantidad de paginas}
+      if (event.target.value !== 'none') {
+        const result = temperamentFilter(allDogs, event.target.value)
+        const count = Math.ceil(result.length / 8);
+        dispatch(setPageFiltered({ paginated: result, count }));
+      }else  dispatch(getPage(1,"Ascendente", "Raza"));
+
     }
   }
 
@@ -119,15 +133,15 @@ export const SearchBar = (props) => {
         </div>
         <div className={styles.filter}>
           <h4>Filtrar por Temperamento</h4>
-          <label htmlFor="filter">Filtro</label>
-          <select name="temperamentos" id="temps">
+          <label For="filter" >Filtro</label>
+          <select onChange={handleChange} name="temperamentos" id="temps">
             <option value="none">none</option>
             {temperaments?.map((element) => (
-              <option value={element.id}>{element.name}</option>
+              <option name='seleccion' id={element.id}>{element.name}</option>
             ))}
           </select>
         </div>
-        
+
       </form>
     </>
   );

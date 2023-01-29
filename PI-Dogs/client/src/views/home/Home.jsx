@@ -14,12 +14,13 @@ export const Home = (props) => {
   
   const dispatch = useDispatch();
   
-  //useEffect(()=>{
     dispatch(getPage(1,"Ascendente", "Raza"));
     dispatch(getAll());
     dispatch(setPage(1));
     dispatch(getTemperaments());
-  //},[dispatch]);
+ useEffect(()=>{
+
+ },[])
 
   return (
     <div className={styles.containerHome}>

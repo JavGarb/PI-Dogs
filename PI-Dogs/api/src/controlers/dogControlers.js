@@ -36,7 +36,6 @@ const getDB = async () => {
 const dbToStr=(dataB)=>{
     let str='';
     dataB.forEach(element => {
-        console.log(element.dataValues)
         for(i=0; i<element.dataValues.Temperaments.length;i++){
             str? str= str + ', '  + element.dataValues.Temperaments[i].name:str=element.dataValues.Temperaments[i].name ;
         }
@@ -60,8 +59,6 @@ const getAll = async (order, value) => {
         if (order === 'Descendente' && value === 'Peso') {
             arr = arr.sort((a, b) => parseInt(a.weight.substr(0, 2) + parseInt(b.weight.substr(0, 2))))
         }
-        
-        //console.log(arr[9])
         return arr;
     }
     //******************************************************************************************************** */
@@ -114,5 +111,5 @@ const dogCreate = async (obj) => {
 }
 
 
-module.exports = { getAll, getName, getId, dogCreate }
+module.exports = { getAll, getName, getId, dogCreate, getApi }
 

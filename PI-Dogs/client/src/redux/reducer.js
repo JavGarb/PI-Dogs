@@ -8,7 +8,7 @@ const initialState= {
     login:false,//guardo si hay usuario logueado
     actualPage:0,//pagina actual
     temperaments:[],
-    actualArgs:{value:'', order:''},//guarda los argumentos de getDogs
+    actualArgs:{value:'Asendente', order:'Raza'},//guarda los argumentos de getDogs
 }
 
 const reducer = ( state = initialState , action)=>{
