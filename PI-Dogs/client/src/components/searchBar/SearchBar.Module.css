@@ -20,7 +20,6 @@
 
 
 .find {
-    background-color: burlywood;
     margin-left: calc((100vw/2)-300px);
     width: max-content;
     justify-content: center;
