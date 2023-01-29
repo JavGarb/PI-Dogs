@@ -1,6 +1,6 @@
 import React from 'react';
 import style from './Card.Module.css';
-import {Link} from 'react-router-dom';
+import {Link, Router} from 'react-router-dom';
 
 export const Card = (props) => {
 const id= props.id;
@@ -12,7 +12,7 @@ const id= props.id;
       <h3>{props.name}</h3>
       <h6>Peso: {props.weight.trim()}</h6>
       <h6>Temperamento: {props.temperament}</h6>
-      </Link>
+      </Link>  
     </div>
   )
 }

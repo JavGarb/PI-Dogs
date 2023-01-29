@@ -49,7 +49,7 @@ router.post('/', async (req, res) => {
     const obj = req.body;
     const dogCreated= await dogCreate(obj);
     try {
-        res.status(200).send('perro creado');
+        res.status(200).send(dogCreated);
     } catch (error) {
         res.status(404).send({ error: error.message });
     }

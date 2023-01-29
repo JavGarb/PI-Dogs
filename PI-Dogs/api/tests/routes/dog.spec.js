@@ -1,38 +1,22 @@
-/* eslint-disable import/no-extraneous-dependencies */
 const { expect } = require('chai');
-const session = require('supertest-session');
+const request = require('supertest');
 const app = require('../../src/app.js');
-const { Dog, conn } = require('../../src/db.js');
-
+const { Dog } = require('../../src/db.js');
 
 
 describe('POST /dogs', () => {
   it('should create a new dog', async () => {
-      const obj = { name: 'Fido', age: 3 };
-      const dogCreate = jest.fn().mockResolvedValue(obj);
-      const response = await request(app)
-          .post('/dogs')
-          .send(obj);
-      expect(response.status).toBe(200);
-      expect(response.body).toEqual(obj);
+    const obj = { image:'Una imagen',name: 'Fido', height:'10-12', weight:'15-20', year_life:'15-20' };
+    const response = await request(app)
+      .post('/dogs')
+      .send(obj);
+      
+    expect(response.status).to.equal(200);
+    expect(response.body).to.have.property('id');
+    expect(response.body).to.have.property('image', obj.image);
+    expect(response.body).to.have.property('name', obj.name);
+    expect(response.body).to.have.property('height', obj.height);
+    expect(response.body).to.have.property('weight', obj.weight);
+    expect(response.body).to.have.property('year_life', obj.year_life);
   });
 });
-
-// const agent = session(app);
-// const dog = {
-//   name: 'Pug',
-// };
-
-// describe('Videogame routes', () => {
-//   before(() => conn.authenticate()
-//   .catch((err) => {
-//     console.error('Unable to connect to the database:', err);
-//   }));
-//   beforeEach(() => Dog.sync({ force: true })
-//     .then(() => Dog.create(dog)));
-//   describe('GET /dogs', () => {
-//     it('should get 200', () =>
-//       agent.get('/dogs').expect(200)
-//     );
-//   });
-// });

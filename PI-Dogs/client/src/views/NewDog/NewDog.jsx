@@ -43,20 +43,20 @@ export function NewDog(props) {
   };
 
   const handleEliminar=(event)=>{
-    // event.preventDefault();
-    // let temporal=[]
-    // const {temperament} = input;
-    // if (!boxValue.id){
-    //   for(let i=0; i<temperament.length -1; i++){
-    //     temporal.push(temperament[i])
-    //   }
-    //   setInput({ ...input, temperament: temporal });
-    // }
-    // else{
-    //   temporal= temperament.filter(element=> element != boxValue.value);
-    //   console.log(temporal);
-    //   setInput({ ...input, temperament: temporal });
-    // }
+    event.preventDefault();
+    let temporal=[]
+    const {temperament} = input;
+    if (!boxValue.id){
+      for(let i=0; i<temperament.length -1; i++){
+        temporal.push(temperament[i])
+      }
+      setInput({ ...input, temperament: temporal });
+    }
+    else{
+      temporal= temperament.filter(element=> element != boxValue.value);
+      console.log(temporal);
+      setInput({ ...input, temperament: temporal });
+    }
     
   }
 //********************************************************************************** */

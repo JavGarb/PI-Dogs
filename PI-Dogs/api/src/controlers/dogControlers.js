@@ -103,7 +103,7 @@ const dogCreate = async (obj) => {
         // const [dogCreate, create] = await Dog.findOrCreate({ where: { name: nameTemp }, defaults: { height, weight, year_life, temperament, image } });
         // const temp = await Temperament.create({ name: temperament })
         // create.temperament = temp.name;
-        // if (create) return dogCreate;
+        return dogCreated;
         // else throw new Error('No se pudo crear el perro, intentelo mas tarde')
     } catch (error) {
         return error.message;
