@@ -16,12 +16,13 @@ body {
     margin: 3%;
     margin-left: 20%;
     padding: 10%;
+    padding-top: 0;
     align-items: center;
     font-size: x-large;
 }
 
 .containerNewDog {
-    width: 100%vw;
+    width: 100vw;
     height: 100vh;
     background-image: url('../../images/shih-tzu-perro-sentado-suelo_8595-11230.jpg');
     background-size: cover;

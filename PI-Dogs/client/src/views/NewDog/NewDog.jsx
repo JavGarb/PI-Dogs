@@ -63,27 +63,30 @@ export function NewDog(props) {
   //********************************************************************************** */
   function HandleSubmit(event) {
     event.preventDefault();
-    const dog = {
-      name: input.name,
-      height: input.heightMin + "-" + input.heightMax,
-      weight: input.weightMin + "-" + input.weightMax,
-      year_life: input.year_lifeMin + "-" + input.year_lifeMax,
-      temperament: input.temperament.map(e => e.id),
-      image: 'https://media.istockphoto.com/id/1392182937/vector/no-image-available-photo-coming-soon.jpg?s=170667a&w=0&k=20&c=HOCGNLwt3LkB92ZlyHAupxbwHY5X2143KDlbA-978dE='
-    }
-    axios.post(ROUTE_DOG_POST, dog)
-      .then(data => alert(data.data))
-      .catch(error => console.log(error));
-    setInput({
-      name: "",
-      heightMin: "0.1",
-      heightMax: "0.2",
-      weightMin: "1",
-      weightMax: "2",
-      year_lifeMin: "1",
-      year_lifeMax: "2",
-      temperament: [],
-    });
+    if(Object.entries(error).length===0 && input.name){
+      const dog = {
+        name: input.name,
+        height: input.heightMin + "-" + input.heightMax,
+        weight: input.weightMin + "-" + input.weightMax,
+        year_life: input.year_lifeMin + "-" + input.year_lifeMax,
+        temperament: input.temperament.map(e => e.id),
+        image: 'https://media.istockphoto.com/id/1392182937/vector/no-image-available-photo-coming-soon.jpg?s=170667a&w=0&k=20&c=HOCGNLwt3LkB92ZlyHAupxbwHY5X2143KDlbA-978dE='
+      }
+      axios.post(ROUTE_DOG_POST, dog)
+        .then(data => alert('Dog Created'))
+        .catch(error => console.log(error));
+      setInput({
+        name: "",
+        heightMin: "0.1",
+        heightMax: "0.2",
+        weightMin: "1",
+        weightMax: "2",
+        year_lifeMin: "1",
+        year_lifeMax: "2",
+        temperament: [],
+      });
+    }else alert('debe ingresar los datos correctamente')
+    
   }
   //*************************************************************************************** */
   const handleClick = (event) => {
