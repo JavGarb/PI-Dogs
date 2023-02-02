@@ -6,9 +6,9 @@ export const GET_TEMP = "GET_TEMP";
 export const SET_ARGS = "GET_ARGS";
 export const GET_FOR_NAME = "GET_FOR_NAME";
 
-const URL_DOGS = "https://api-dogs-g87z.onrender.com/dogs";
-const URL_TEMPERAMENTS = "https://api-dogs-g87z.onrender.com/temperaments";
-const GET_DOG_NAME = "https://api-dogs-g87z.onrender.com/dogs/?name="
+const URL_DOGS = "http://api-dogs-g87z.onrender.com/dogs";
+const URL_TEMPERAMENTS = "http://api-dogs-g87z.onrender.com/temperaments";
+const GET_DOG_NAME = "http://api-dogs-g87z.onrender.com/dogs/?name="
 
 //trae el perro por nombre y lo asigna a la pagina para que se muestren, no tiene limites
 export function getForName(value) {
