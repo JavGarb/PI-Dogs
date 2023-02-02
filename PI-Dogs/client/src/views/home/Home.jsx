@@ -19,8 +19,11 @@ export const Home = (props) => {
     dispatch(setPage(1));
     dispatch(getTemperaments());
  useEffect(()=>{
-
- },[])
+       dispatch(getPage(1,"Ascendente", "Raza"));
+      dispatch(getAll());
+      dispatch(setPage(1));
+      dispatch(getTemperaments());
+  },[])
 
   return (
     <div className={styles.containerHome}>
