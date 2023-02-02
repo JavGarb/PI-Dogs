@@ -60,7 +60,7 @@ export function setPage(page) {
 
 export function getAll() {
     return (dispatch) => {
-        fetch(URL_DOGS, {mode: 'no-cors'})
+        fetch(URL_DOGS)
             .then(res => res.json())
             .then(data => dispatch({ type: GET_ALL, payload: data }))
             .catch((error) => console.error(error));
