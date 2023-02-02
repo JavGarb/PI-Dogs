@@ -13,7 +13,7 @@ const GET_DOG_NAME = "https://api-dogs-g87z.onrender.com/dogs/?name=";
 //trae el perro por nombre y lo asigna a la pagina para que se muestren, no tiene limites
 export function getForName(value) {
     return (dispatch) => {
-        fetch(GET_DOG_NAME + value)
+        fetch(GET_DOG_NAME + value, {mode:'no-cors'})
         .then(res => res.json())
         .then(data=> dispatch({ type: GET_FOR_NAME, payload:{paginated:data.slice(0,8), count:8 }}))
         .catch(error=> console.log(error));
@@ -30,7 +30,7 @@ export function setArgs(args) {//args es un objeto con dos propiedades value y o
 export function getPage(page, order, value) {
     if (page < 1) return;
     return (dispatch) => {
-        fetch(URL_DOGS + `?page=${page}&order=${order}&value=${value}`)
+        fetch(URL_DOGS + `?page=${page}&order=${order}&value=${value}`, {mode: 'no-cors'})
             .then(res => res.json())
             .then(data => dispatch({ type: GET_PAGE, payload: data }))
             .catch((error) => console.error(error));
@@ -45,7 +45,7 @@ export function setPageFiltered(obj){
 
 export function getTemperaments() {
     return (dispatch) => {
-        fetch(URL_TEMPERAMENTS)
+        fetch(URL_TEMPERAMENTS, {mode:'no-cors'})
             .then(res => res.json())
             .then(data => dispatch({ type: GET_TEMP, payload: data }))
             .catch((error) => console.error(error));
@@ -60,7 +60,7 @@ export function setPage(page) {
 
 export function getAll() {
     return (dispatch) => {
-        fetch(URL_DOGS)
+        fetch(URL_DOGS, {mode: 'no-cors'})
             .then(res => res.json())
             .then(data => dispatch({ type: GET_ALL, payload: data }))
             .catch((error) => console.error(error));
