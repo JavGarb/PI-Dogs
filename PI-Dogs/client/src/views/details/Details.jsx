@@ -14,7 +14,7 @@ export const Details = (props) => {
 
   useEffect(() => {
     console.log('trae este perro', id);
-    fetch(`https://api-dogs-g87z.onrender.com/dogs/${id}`)
+    fetch(`http://api-dogs-g87z.onrender.com/dogs/${id}`)
       .then((response) => response.json())
       .then((dog) => {
         if (dog.name) {
