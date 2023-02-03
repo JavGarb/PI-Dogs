@@ -7,7 +7,7 @@ import { getTemperaments } from "../../redux/actions";
 import styles from "./NewDog.Module.css";
 import imgBtn from '../../images/btnVolver.gif'
 import axios from 'axios';
-const ROUTE_DOG_POST = "http://localhost:3001/dogs"
+const ROUTE_DOG_POST = "https://api-dogs-g87z.onrender.com/dogs"//"http://localhost:3001/dogs"
 
 export function NewDog(props) {
   const temps = useSelector((state) => state.temperaments);
@@ -54,8 +54,7 @@ export function NewDog(props) {
       setInput({ ...input, temperament: temporal });
     }
     else {
-      temporal = temperament.filter(element => element != boxValue.value);
-      console.log(temporal);
+      temporal = temperament.filter(element => element.id !== boxValue.id);
       setInput({ ...input, temperament: temporal });
     }
 
@@ -93,7 +92,7 @@ export function NewDog(props) {
     event.preventDefault();
     if (event.target.name === "addTemp" && boxValue.name !== "") {
       if (boxValue === "None") return alert("debe ingresar un valor valido");
-      if (input.temperament.includes(boxValue.id))
+      if (input.temperament.find(e=>e.id===boxValue.id))
         return alert("No se deben repetir los valores");
       arr.push(boxValue);
     }

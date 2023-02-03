@@ -1,11 +1,11 @@
 import React from 'react'
 import styles from './NavBar.Module.css'
-import { useSelector } from 'react-redux'
+//import { useSelector } from 'react-redux'
 
 
 
 export const NavBar = (props) => {
-  const login= useSelector(state=> state.login);
+  //const login= useSelector(state=> state.login);
   return (
     <div className={styles.containerNav} >
       <a className={styles.btn} href="/home">Home</a>

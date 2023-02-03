@@ -1,4 +1,4 @@
-import {useSelector} from 'react-redux';
+
 // esta funcion filtra por temperamento a nivel local y luego envia la pagina actual al store
 function temperamentFilter(arr, temperament){
     

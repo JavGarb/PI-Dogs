@@ -1,6 +1,6 @@
 import React from 'react';
 import style from './Card.Module.css';
-import {Link, Router} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 export const Card = (props) => {
 const id= props.id;

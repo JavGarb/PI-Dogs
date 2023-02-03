@@ -20,7 +20,7 @@ export const SearchBar = (props) => {
     order: "Ascendente",
     value: "Raza",
   });
-  const [selection, setSelection] = useState('')
+  //const [selection, setSelection] = useState('')
   const [inputTxt, setInputTxt] = useState({ value: '' });
   //********************************************************************************* */
   //Funcion que maneja el boton de traer perro por nombre
@@ -64,6 +64,7 @@ export const SearchBar = (props) => {
         const result = temperamentFilter(allDogs, event.target.value)
         const count = Math.ceil(result.length / 8);
         dispatch(setPageFiltered({ paginated: result, count }));
+        event.target.value='none';
       }else  dispatch(getPage(1,"Ascendente", "Raza"));
 
     }
@@ -73,7 +74,7 @@ export const SearchBar = (props) => {
 
   useEffect(() => {
     dispatch(getPage(page, radioBtn.order, radioBtn.value));
-  }, [radioBtn]);
+  }, [page,radioBtn, dispatch]);
 
   //************************************************************************************* */
   return (

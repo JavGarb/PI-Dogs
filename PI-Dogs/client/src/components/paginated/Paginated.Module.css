@@ -7,6 +7,11 @@
     margin-left: 8%;
     margin-right: 3%;
 }
+p{
+    font-size: large;
+    font-weight: bold;
+    color: black;
+}
 
 @media(max-width:550){
     .containerPag{
