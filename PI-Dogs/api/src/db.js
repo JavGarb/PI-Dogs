@@ -4,11 +4,11 @@ const fs = require('fs');
 const path = require('path');
 //Aqui trae todas las constantes con datos sensibles requeridas para la db
 const {
-  DB_USER, DB_PASSWORD, DB_HOST,
+  DB_USER, DB_PASSWORD, DB_HOST, DB_NAME
 } = process.env;
 
 //crea la conexion a la base de datos de postgre
-const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/dogs`, {
+const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`, {
   logging: false, // set to console.log to see the raw SQL queries
   native: false, // lets Sequelize know we can use pg-native for ~30% more speed
 });
